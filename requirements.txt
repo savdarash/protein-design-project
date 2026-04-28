@@ -1,0 +1,5 @@
+requests
+biopython
+pytest
+streamlit
+py3Dmol
