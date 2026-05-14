@@ -9,7 +9,11 @@ __pycache__/
 .DS_Store
 
 # Outputs
-outputs/
+
+outputs/*
+!outputs/visualizations/
+!outputs/visualizations/mutation_heatmap.png
+
 data/mpnn_outputs/
 
 # Jupyter
