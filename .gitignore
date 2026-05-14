@@ -1,2 +1,23 @@
-.DS_Store
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
 .venv/
+
+# Mac
+.DS_Store
+
+# Outputs
+outputs/
+data/mpnn_outputs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VSCode
+.vscode/
+
+.env
+
+external/
