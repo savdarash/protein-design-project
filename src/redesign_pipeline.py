@@ -6,6 +6,7 @@ from src.fixed_position_generator import generate_fixed_positions
 from src.parse_mpnn_output import parse_fasta_sequences
 from src.candidate_summary import create_candidate_summary
 from src.mutation_frequency import create_mutation_frequency_table
+from src.property_transition_analysis import create_property_transition_table
 
 from src.mutation_heatmap import (
     build_mutation_matrix,
@@ -131,6 +132,14 @@ def create_pipeline_outputs(config: RedesignConfig):
             f"outputs/scored_candidates/"
             f"{config.protein_name}_mutation_frequency.csv"
         ),
+    )
+    create_property_transition_table(
+	fasta_path=str(fasta_path),
+        output_path=(
+            f"outputs/scored_candidates/"
+            f"{config.protein_name}_property_transitions.csv"
+        ),
+
     )
 
     print("Pipeline outputs created.")
