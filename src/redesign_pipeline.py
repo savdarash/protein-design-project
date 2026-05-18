@@ -1,9 +1,17 @@
 import subprocess
 from pathlib import Path
+
 from src.redesign_config import RedesignConfig
 from src.fixed_position_generator import generate_fixed_positions
 from src.parse_mpnn_output import parse_fasta_sequences
-from src.mutation_heatmap import build_mutation_matrix, plot_mutation_heatmap, extract_score_from_header
+from src.candidate_summary import create_candidate_summary
+from src.mutation_frequency import create_mutation_frequency_table
+
+from src.mutation_heatmap import (
+    build_mutation_matrix,
+    plot_mutation_heatmap,
+    extract_score_from_header,
+)
 
 
 def run_proteinmpnn(config: RedesignConfig):
@@ -13,16 +21,21 @@ def run_proteinmpnn(config: RedesignConfig):
 
     config.validate()
 
-    proteinmpnn_script = Path("external/ProteinMPNN/protein_mpnn_run.py")
+    proteinmpnn_script = Path(
+        "external/ProteinMPNN/protein_mpnn_run.py"
+    )
 
     if not proteinmpnn_script.exists():
         raise FileNotFoundError(
-            "ProteinMPNN script not found. Expected external/ProteinMPNN/protein_mpnn_run.py"
+            "ProteinMPNN script not found. "
+            "Expected external/ProteinMPNN/protein_mpnn_run.py"
         )
 
     output_dir = Path(config.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
+
     fixed_positions_path = generate_fixed_positions(config)
+
     command = [
         "python",
         str(proteinmpnn_script),
@@ -35,11 +48,13 @@ def run_proteinmpnn(config: RedesignConfig):
         "--sampling_temp",
         config.sampling_temp,
     ]
+
     if fixed_positions_path is not None:
-    	command.extend([
-        	"--fixed_positions_jsonl",
-        	fixed_positions_path,
-    ])
+        command.extend([
+            "--fixed_positions_jsonl",
+            fixed_positions_path,
+        ])
+
     print("Running redesign pipeline")
     print(f"Mode: {config.redesign_mode}")
     print(" ".join(command))
@@ -48,19 +63,27 @@ def run_proteinmpnn(config: RedesignConfig):
 
     return output_dir
 
+
 def create_pipeline_outputs(config: RedesignConfig):
     """
-    Parses ProteinMPNN outputs and creates mutation heatmap.
+    Parses ProteinMPNN outputs and creates analysis outputs.
     """
 
-    fasta_path = Path(config.output_dir) / "seqs" / f"{config.protein_name}.fa"
+    fasta_path = (
+        Path(config.output_dir)
+        / "seqs"
+        / f"{config.protein_name}.fa"
+    )
 
     sequences = parse_fasta_sequences(fasta_path)
 
     original_sequence = sequences[0]["sequence"]
     candidate_items = sequences[1:]
 
-    candidate_sequences = [item["sequence"] for item in candidate_items]
+    candidate_sequences = [
+        item["sequence"]
+        for item in candidate_items
+    ]
 
     matrix = build_mutation_matrix(
         original_sequence=original_sequence,
@@ -70,19 +93,51 @@ def create_pipeline_outputs(config: RedesignConfig):
     candidate_labels = []
 
     for i, item in enumerate(candidate_items, start=1):
-        score = extract_score_from_header(item["header"])
-        num_mutations = int(matrix.iloc[i - 1].sum())
-        candidate_labels.append(f"Candidate {i} | score={score} | muts={num_mutations}")
+
+        score = extract_score_from_header(
+            item["header"]
+        )
+
+        num_mutations = int(
+            matrix.iloc[i - 1].sum()
+        )
+
+        candidate_labels.append(
+            f"Candidate {i} | "
+            f"score={score} | "
+            f"muts={num_mutations}"
+        )
 
     plot_mutation_heatmap(
         matrix=matrix,
         candidate_labels=candidate_labels,
-        output_path=f"outputs/visualizations/{config.protein_name}_mutation_heatmap.png",
+        output_path=(
+            f"outputs/visualizations/"
+            f"{config.protein_name}_mutation_heatmap.png"
+        ),
+    )
+
+    create_candidate_summary(
+        fasta_path=str(fasta_path),
+        output_path=(
+            f"outputs/scored_candidates/"
+            f"{config.protein_name}_candidate_summary.csv"
+        ),
+    )
+
+    create_mutation_frequency_table(
+        fasta_path=str(fasta_path),
+        output_path=(
+            f"outputs/scored_candidates/"
+            f"{config.protein_name}_mutation_frequency.csv"
+        ),
     )
 
     print("Pipeline outputs created.")
 
+
 if __name__ == "__main__":
+
     config = RedesignConfig(
         protein_name="1crn",
         pdb_path="data/pdbs/1crn.pdb",
@@ -93,4 +148,5 @@ if __name__ == "__main__":
     )
 
     run_proteinmpnn(config)
+
     create_pipeline_outputs(config)
