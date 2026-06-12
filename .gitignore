@@ -8,11 +8,7 @@ __pycache__/
 # Mac
 .DS_Store
 
-# Outputs
-
-outputs/*
-!outputs/visualizations/
-!outputs/visualizations/mutation_heatmap.png
+# Generated model outputs
 
 data/mpnn_outputs/
 

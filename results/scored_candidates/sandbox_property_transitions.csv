@@ -1,0 +1,19 @@
+property_transition,frequency
+polar sulfur-containing → aromatic bulky,2
+rigid cyclic → negatively charged,2
+hydrophobic branched → aromatic hydrophobic,1
+positively charged → rigid cyclic,1
+small hydrophobic → negatively charged,1
+small hydrophobic → hydrophobic branched,1
+small hydrophobic → aromatic bulky,1
+rigid cyclic → polar sulfur-containing,1
+rigid cyclic → aromatic hydrophobic,1
+polar sulfur-containing → positively charged,1
+hydrophobic branched → aromatic polar,1
+polar sulfur-containing → hydrophobic branched,1
+polar sulfur-containing → aromatic polar,1
+polar small → polar sulfur-containing,1
+polar small → polar amide,1
+polar small → negatively charged,1
+hydrophobic branched → rigid cyclic,1
+tiny flexible → polar amide,1

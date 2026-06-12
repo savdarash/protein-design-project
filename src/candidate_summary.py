@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 
 from src.amino_acid_properties import describe_amino_acid_change
-from src.parse_mpnn_output import parse_fasta_sequences
+from src.sequence_io import parse_fasta_sequences
 from src.mutation_parser import find_mutations
 from src.mutation_heatmap import extract_score_from_header
 
@@ -67,6 +67,6 @@ def create_candidate_summary(fasta_path: str, output_path: str):
 if __name__ == "__main__":
 
     create_candidate_summary(
-        fasta_path="data/mpnn_outputs/seqs/1crn.fa",
-        output_path="outputs/scored_candidates/1crn_candidate_summary.csv",
+        fasta_path="results/scored_candidates/sandbox_candidates.fasta",
+        output_path="results/scored_candidates/sandbox_candidate_summary.csv",
     )

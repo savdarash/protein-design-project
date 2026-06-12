@@ -1,0 +1,7 @@
+position,original_aa,candidate_aa,mutation,frequency
+10,R,K,R10K,5
+11,S,E,S11E,2
+11,S,Q,S11Q,2
+11,S,N,S11N,1
+12,N,L,N12L,4
+12,N,R,N12R,1

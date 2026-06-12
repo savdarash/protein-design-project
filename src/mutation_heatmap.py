@@ -1,9 +1,18 @@
 from pathlib import Path
+import os
+import tempfile
 
+cache_root = Path(tempfile.gettempdir()) / "protein_mutation_sandbox_cache"
+os.environ.setdefault("MPLCONFIGDIR", str(cache_root / "matplotlib"))
+os.environ.setdefault("XDG_CACHE_HOME", str(cache_root / "xdg"))
+
+import matplotlib
 import pandas as pd
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from src.parse_mpnn_output import parse_fasta_sequences
+from src.sequence_io import parse_fasta_sequences
 
 
 def build_mutation_matrix(original_sequence, candidate_sequences):
@@ -38,13 +47,13 @@ def build_mutation_matrix(original_sequence, candidate_sequences):
 def plot_mutation_heatmap(
     matrix,
     candidate_labels,
-    output_path="outputs/visualizations/mutation_heatmap.png",
+    output_path="results/visualizations/mutation_heatmap.png",
 ):
     """
     Creates and saves a mutation heatmap.
 
     Columns show original amino acid + residue position.
-    Rows show ProteinMPNN candidate sequences.
+    Rows show mutated candidate sequences.
     """
 
     output_path = Path(output_path)
@@ -55,8 +64,8 @@ def plot_mutation_heatmap(
     plt.imshow(matrix, aspect="auto")
 
     plt.xlabel("Original residue and position")
-    plt.ylabel("ProteinMPNN candidate")
-    plt.title("ProteinMPNN Mutation Heatmap")
+    plt.ylabel("Mutation candidate")
+    plt.title("Protein Mutation Heatmap")
 
     plt.xticks(
         ticks=range(len(matrix.columns)),
@@ -81,7 +90,7 @@ def plot_mutation_heatmap(
 
 def extract_score_from_header(header):
     """
-    Pulls the ProteinMPNN score from a FASTA header.
+    Pulls a score from a FASTA header when one is present.
 
     Example header:
     T=0.1, sample=1, score=0.7497, global_score=0.7497
@@ -99,7 +108,7 @@ def extract_score_from_header(header):
 
 
 if __name__ == "__main__":
-    fasta_file = "data/mpnn_outputs/seqs/1crn.fa"
+    fasta_file = "results/scored_candidates/sandbox_candidates.fasta"
 
     sequences = parse_fasta_sequences(fasta_file)
 

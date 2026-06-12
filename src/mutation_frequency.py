@@ -1,7 +1,7 @@
 from pathlib import Path
 import pandas as pd
 
-from src.parse_mpnn_output import parse_fasta_sequences
+from src.sequence_io import parse_fasta_sequences
 
 
 def create_mutation_frequency_table(fasta_path: str, output_path: str):
@@ -28,15 +28,35 @@ def create_mutation_frequency_table(fasta_path: str, output_path: str):
                     "candidate_id": candidate_index,
                 })
 
-    mutation_df = pd.DataFrame(rows)
-
-    frequency_df = (
-        mutation_df
-        .groupby(["position", "original_aa", "candidate_aa", "mutation"])
-        .size()
-        .reset_index(name="frequency")
-        .sort_values(["position", "frequency"], ascending=[True, False])
+    mutation_df = pd.DataFrame(
+        rows,
+        columns=[
+            "position",
+            "original_aa",
+            "candidate_aa",
+            "mutation",
+            "candidate_id",
+        ],
     )
+
+    if mutation_df.empty:
+        frequency_df = pd.DataFrame(
+            columns=[
+                "position",
+                "original_aa",
+                "candidate_aa",
+                "mutation",
+                "frequency",
+            ]
+        )
+    else:
+        frequency_df = (
+            mutation_df
+            .groupby(["position", "original_aa", "candidate_aa", "mutation"])
+            .size()
+            .reset_index(name="frequency")
+            .sort_values(["position", "frequency"], ascending=[True, False])
+        )
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -50,6 +70,6 @@ def create_mutation_frequency_table(fasta_path: str, output_path: str):
 
 if __name__ == "__main__":
     create_mutation_frequency_table(
-        fasta_path="data/mpnn_outputs/seqs/1crn.fa",
-        output_path="outputs/scored_candidates/1crn_mutation_frequency.csv",
+        fasta_path="results/scored_candidates/sandbox_candidates.fasta",
+        output_path="results/scored_candidates/sandbox_mutation_frequency.csv",
     )

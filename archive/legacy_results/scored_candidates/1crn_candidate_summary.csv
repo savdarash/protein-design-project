@@ -1,0 +1,6 @@
+candidate_id,score,num_mutations,mutations,mutation_interpretations,sequence
+1,1.8067,3,"R10K, S11Q, N12L",R10K: positively charged → positively charged | S11Q: polar small → polar amide | N12L: polar amide → hydrophobic bulky,TTCCPSIVAKQLFNVCRLPGTPEAICATYTGCIIIPGATCPGDYAN
+2,1.8613,3,"R10K, S11Q, N12R",R10K: positively charged → positively charged | S11Q: polar small → polar amide | N12R: polar amide → positively charged,TTCCPSIVAKQRFNVCRLPGTPEAICATYTGCIIIPGATCPGDYAN
+3,1.7328,3,"R10K, S11E, N12L",R10K: positively charged → positively charged | S11E: polar small → negatively charged | N12L: polar amide → hydrophobic bulky,TTCCPSIVAKELFNVCRLPGTPEAICATYTGCIIIPGATCPGDYAN
+4,1.7914,3,"R10K, S11N, N12L",R10K: positively charged → positively charged | S11N: polar small → polar amide | N12L: polar amide → hydrophobic bulky,TTCCPSIVAKNLFNVCRLPGTPEAICATYTGCIIIPGATCPGDYAN
+5,1.7210,3,"R10K, S11E, N12L",R10K: positively charged → positively charged | S11E: polar small → negatively charged | N12L: polar amide → hydrophobic bulky,TTCCPSIVAKELFNVCRLPGTPEAICATYTGCIIIPGATCPGDYAN

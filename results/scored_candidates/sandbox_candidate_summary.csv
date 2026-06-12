@@ -1,0 +1,11 @@
+candidate_id,score,num_mutations,mutations,mutation_interpretations,sequence
+1,NA,2,"R10P, T21C",R10P: positively charged → rigid cyclic | T21C: polar small → polar sulfur-containing,TTCCPSIVAPSNFNVCRLPGCPEAICATYTGCIIIPGATCPGDYAN
+2,NA,2,"P5E, I35P",P5E: rigid cyclic → negatively charged | I35P: hydrophobic branched → rigid cyclic,TTCCESIVARSNFNVCRLPGTPEAICATYTGCIIPPGATCPGDYAN
+3,NA,2,"C4V, A38I",C4V: polar sulfur-containing → hydrophobic branched | A38I: small hydrophobic → hydrophobic branched,TTCVPSIVARSNFNVCRLPGTPEAICATYTGCIIIPGITCPGDYAN
+4,NA,2,"C3R, S6Q",C3R: polar sulfur-containing → positively charged | S6Q: polar small → polar amide,TTRCPQIVARSNFNVCRLPGTPEAICATYTGCIIIPGATCPGDYAN
+5,NA,2,"P5D, C16W",P5D: rigid cyclic → negatively charged | C16W: polar sulfur-containing → aromatic bulky,TTCCDSIVARSNFNVWRLPGTPEAICATYTGCIIIPGATCPGDYAN
+6,NA,2,"C4Y, T28E",C4Y: polar sulfur-containing → aromatic polar | T28E: polar small → negatively charged,TTCYPSIVARSNFNVCRLPGTPEAICAEYTGCIIIPGATCPGDYAN
+7,NA,2,"V15Y, P41C",V15Y: hydrophobic branched → aromatic polar | P41C: rigid cyclic → polar sulfur-containing,TTCCPSIVARSNFNYCRLPGTPEAICATYTGCIIIPGATCCGDYAN
+8,NA,2,"G37Q, A38D",G37Q: tiny flexible → polar amide | A38D: small hydrophobic → negatively charged,TTCCPSIVARSNFNVCRLPGTPEAICATYTGCIIIPQDTCPGDYAN
+9,NA,2,"C3W, V15F",C3W: polar sulfur-containing → aromatic bulky | V15F: hydrophobic branched → aromatic hydrophobic,TTWCPSIVARSNFNFCRLPGTPEAICATYTGCIIIPGATCPGDYAN
+10,NA,2,"P19F, A27W",P19F: rigid cyclic → aromatic hydrophobic | A27W: small hydrophobic → aromatic bulky,TTCCPSIVARSNFNVCRLFGTPEAICWTYTGCIIIPGATCPGDYAN
