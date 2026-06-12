@@ -21,3 +21,4 @@ data/mpnn_outputs/
 .env
 
 external/
+archive/
