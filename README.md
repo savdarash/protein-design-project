@@ -75,6 +75,3 @@ Mutation labels use the format `A10V`: original amino acid, 1-indexed residue po
 - `src/mutation_heatmap.py` writes mutation heatmaps.
 - `src/amino_acid_properties.py` contains simple amino-acid property labels.
 
-## Legacy Code
-
-Older AlphaFold routing, PDB-specific inputs, and ProteinMPNN orchestration code has been moved into `archive/`. The `external/ProteinMPNN` directory is still treated as external/vendor code and is not part of the current MVP pipeline.
