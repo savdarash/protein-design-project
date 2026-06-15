@@ -70,6 +70,6 @@ def create_mutation_frequency_table(fasta_path: str, output_path: str):
 
 if __name__ == "__main__":
     create_mutation_frequency_table(
-        fasta_path="results/scored_candidates/sandbox_candidates.fasta",
-        output_path="results/scored_candidates/sandbox_mutation_frequency.csv",
+        fasta_path="results/scored_candidates/demo_candidates.fasta",
+        output_path="results/scored_candidates/demo_mutation_frequency.csv",
     )

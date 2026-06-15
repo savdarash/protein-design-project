@@ -67,6 +67,6 @@ def create_candidate_summary(fasta_path: str, output_path: str):
 if __name__ == "__main__":
 
     create_candidate_summary(
-        fasta_path="results/scored_candidates/sandbox_candidates.fasta",
-        output_path="results/scored_candidates/sandbox_candidate_summary.csv",
+        fasta_path="results/scored_candidates/demo_candidates.fasta",
+        output_path="results/scored_candidates/demo_candidate_summary.csv",
     )

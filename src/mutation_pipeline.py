@@ -89,8 +89,8 @@ def run_mutation_pipeline(config: MutationConfig):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Protein Mutation Sandbox pipeline")
-    parser.add_argument("--protein-name", default="sandbox")
+    parser = argparse.ArgumentParser(description="Protein Mutation Generator pipeline")
+    parser.add_argument("--protein-name", default="demo")
     parser.add_argument("--sequence", required=True)
     parser.add_argument("--mode", choices=["auto", "single"], default="auto")
     parser.add_argument("--num-candidates", type=int, default=10)

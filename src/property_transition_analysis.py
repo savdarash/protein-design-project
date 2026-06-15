@@ -80,6 +80,6 @@ def create_property_transition_table(fasta_path: str, output_path: str):
 if __name__ == "__main__":
 
     create_property_transition_table(
-        fasta_path="results/scored_candidates/sandbox_candidates.fasta",
-        output_path="results/scored_candidates/sandbox_property_transitions.csv",
+        fasta_path="results/scored_candidates/demo_candidates.fasta",
+        output_path="results/scored_candidates/demo_property_transitions.csv",
     )

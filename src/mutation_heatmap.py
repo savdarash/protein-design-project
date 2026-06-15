@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 import tempfile
 
-cache_root = Path(tempfile.gettempdir()) / "protein_mutation_sandbox_cache"
+cache_root = Path(tempfile.gettempdir()) / "protein_mutation_generator_cache"
 os.environ.setdefault("MPLCONFIGDIR", str(cache_root / "matplotlib"))
 os.environ.setdefault("XDG_CACHE_HOME", str(cache_root / "xdg"))
 
@@ -108,7 +108,7 @@ def extract_score_from_header(header):
 
 
 if __name__ == "__main__":
-    fasta_file = "results/scored_candidates/sandbox_candidates.fasta"
+    fasta_file = "results/scored_candidates/demo_candidates.fasta"
 
     sequences = parse_fasta_sequences(fasta_file)
 

@@ -7,7 +7,7 @@ from src.sequence_io import clean_sequence, validate_sequence
 @dataclass
 class MutationConfig:
     """
-    Configuration for a sequence-only mutation sandbox run.
+    Configuration for a sequence-only mutation generator run.
     """
 
     protein_name: str
